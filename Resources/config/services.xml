@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="doctrine_logger.listener.class">ATailouloute\DoctrineLoggerBundle\EventListener\EntityChangeListener</parameter>
+        <parameter key="doctrine_logger.object_formatter.class">ATailouloute\DoctrineLoggerBundle\Formatter\DefaultObjectFormatter</parameter>
+        <parameter key="doctrine_logger.output_formatter.class">ATailouloute\DoctrineLoggerBundle\Formatter\TableOutputFormatter</parameter>
+    </parameters>
+
+    <services>
+        <service id="output_formatter" class="%doctrine_logger.output_formatter.class%" public="false" />
+        <service id="object_formatter" class="%doctrine_logger.object_formatter.class%" public="false" />
+        <service id="doctrine_logger" class="%doctrine_logger.listener.class%" public="false">
+            <argument type="service" id="logger" />
+            <argument type="service" id="output_formatter" />
+            <argument type="service" id="object_formatter" />
+            <tag name="doctrine.event_listener" event="onFlush" method="onFlush"/>
+            <tag name="monolog.logger" channel="doctrine_logger" />
+        </service>
+    </services>
+
+</container>

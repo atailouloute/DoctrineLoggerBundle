@@ -1,0 +1,19 @@
+{
+    "name": "atailouloute/doctrine-logger-bundle",
+    "description": "This bundle allows you to keep tracking of your entities changes.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmed Tailouloute",
+            "email": "ahmed.tailouloute@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+          "ATailouloute\\DoctrineLoggerBundle": ""
+        }
+    },
+    "target-dir": "ATailouloute/DoctrineLoggerBundle"
+}
